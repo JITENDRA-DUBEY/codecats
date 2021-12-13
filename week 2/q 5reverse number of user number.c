@@ -16,6 +16,7 @@ m=n%10;
 n=n/10;
 
 printf("%d",m);}
+printf("%d",m);
 
 
 return 0;

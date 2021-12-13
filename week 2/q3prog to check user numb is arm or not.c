@@ -17,7 +17,7 @@ int main()
         on=on/10;
         r=pow(rem,d);
         m=m+r;}
-    (m==n)?printf("%d is ARMSTRONG NUMBER",m):printf(" %d IS NOT A ARMSTRONG NUMBER",m);
+    (m==n)?printf("%d is ARMSTRONG NUMBER",n):printf(" %d IS NOT A ARMSTRONG NUMBER",n);
      return 0;
      }
 

@@ -12,5 +12,5 @@ char ch;
     printf("input character is numeric");
     else
         printf("input character is special char");
- return 0;
+ 
 }

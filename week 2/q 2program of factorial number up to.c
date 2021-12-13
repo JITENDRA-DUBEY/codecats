@@ -1,14 +1,15 @@
 #include<stdio.h>
 int main()
 {
-	int m,fac=1;
+	int m;
+	 unsigned long long int fac=1;
 	printf("enter a numb");
 	scanf("%d",&m);
 	for(m;m>=1;m--)
 	{
 	fac=fac*m;}
 	
-	printf("factorial  =%d",fac);
+	printf("factorial  =%llu",fac);
 	return 0;
 
 }
