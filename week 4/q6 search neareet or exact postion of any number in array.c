@@ -12,7 +12,7 @@ int main()
     {
         scanf("%d",&a[i]);
     }
-    printf("plzz enter the target value whiles lies between input numbers:-\n");
+    printf("plzz enter the target value whose lies between input numbers:-\n");
     scanf("%d",&k);
     for(i=0;i<=n-1;i++)
     {
