@@ -73,6 +73,7 @@ void dlt(struct phone *p);
           case 5:
           printf("thanku for using my application\n");
              exit(1);
+           default : printf("PLZZ CHOOSE RYT OPTION\n");  
         }
 
 
