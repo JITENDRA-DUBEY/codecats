@@ -11,17 +11,17 @@ int main()
 {
     int i;
  struct empid s[10];
- for(i=0;i<10;i++){
+ for(i=0;i<2;i++){
   printf("plzz enter %d data\n",i+1);
  input(&s[i]);
  }fflush(stdin);
  sort(s);
  fflush(stdin);
-for(i=0;i<10;i++){
+for(i=0;i<2;i++){
   printf("your %d data is:-\n",i+1);
  display(&s[i]);
  }
- sort(s);
+ //sort(s);
  return 0;
 }
  void input(struct empid *p)
@@ -44,9 +44,9 @@ for(i=0;i<10;i++){
      int i,j;
      float t;
      char s[20];
-     for(i=0;i<=10;i++)
+     for(i=0;i<=2;i++)
      {
-        for(j=i+1;j<10;j++)
+        for(j=i+1;j<2;j++)
         {
             if(((r+i)->a)>((r+j)->a))
             {
