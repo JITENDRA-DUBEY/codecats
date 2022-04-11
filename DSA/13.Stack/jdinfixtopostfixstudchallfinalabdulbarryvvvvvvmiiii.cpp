@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include<string.h>
+//incomplete
 using namespace std;
  class Node
 {
@@ -24,7 +25,8 @@ class Stack
     int isBalenced(char *);
     char* infixtopostfix(char *);
     int isOperand(char x);
-    int pre(char x);
+    int outStackpre(char x);
+    int inStackpre(char x);
     char topOfStack();
     int Evalution(char *);
 };
@@ -58,7 +60,7 @@ char Stack::Pop()
     if(Top==NULL)
     cout<<"\nStack UnderFlow";
     else
-    { 
+    {
         Node*temp=Top;
         x=Top->data;
         Top=Top->next;
@@ -114,22 +116,41 @@ int Stack::isMatch(char *exp)
        }
    }  if(Top==NULL)
        return 1;
-       else 
+       else
        return 0;
 }
 int Stack ::isOperand(char x)
 {
-    if(x=='+'||x=='-'||x=='*'||x=='/')
+    if(x=='+'||x=='-'||x=='*'||x=='/'||x=='^'||x=='('||x==')')
      return 0;
      else
      return 1;
 }
-int Stack::pre(char x)
+int Stack::outStackpre(char x)
 {
     if(x=='+'||x=='-')
     return 1;
      else if(x=='*'||x=='/')
+    return 3;
+    else if(x=='^')
+    return 6;
+    else if (x=='(')
+    return 7;
+    else if(x==')')
+     return 0;
+return 0;
+}
+int Stack::inStackpre(char x)
+{
+    if(x=='+'||x=='-')
     return 2;
+     else if(x=='*'||x=='/')
+    return 4;
+    else if(x=='^')
+    return 5;
+    else if (x=='(')
+    return 0;
+
 return 0;
 }
 char Stack::topOfStack()
@@ -140,21 +161,30 @@ char Stack::topOfStack()
 char* Stack:: infixtopostfix(char *infix)
 {
     int i=0,j=0;
-    char*postfix=new char[strlen(infix)+2];
+    char*postfix=new char[strlen(infix)+1];
     while(infix[i])
     {
         if(isOperand(infix[i]))
         {
-            postfix[j++]=infix[i++];//except operatrer we store in array first;
+            postfix[j++]=infix[i++];//except operatre we store in array first;
         }
-        else 
+        else
         {
-            if(pre(infix[i])>pre(topOfStack()))//top->data
-            Push(infix[i++]);
+            if(outStackpre(infix[i])>inStackpre(topOfStack()))//top->data
+            
+            {Push(infix[i++]);}
+              else if (outStackpre(infix[i])==inStackpre(topOfStack()))
+			  {
+			  	Pop();
+			  	i++;
+			  }
+            
             else
-            postfix[j++]=Pop();
+            {   char x=Pop();
+            postfix[j++]=x;
+            }
         }
-       
+
     } while(Top)
         {
              postfix[j++]=Pop();
@@ -169,7 +199,7 @@ int  Stack:: Evalution (char *postfix)
     {
         if(isOperand(postfix[i]))
         Push(postfix[i]-'0');
-    
+
     else
     {
         x2=Pop();
@@ -181,39 +211,14 @@ int  Stack:: Evalution (char *postfix)
            case '*':r=x1*x2;Push(r);break;
            case '/':r=x1/x2;Push(r);break;
        }
-    }   
+    }
     }   return Pop();
 }
 int main()
 {
     Stack st;
-    /*int n,x;
-    cout<<"\nEnter How Many Data U want to Push in to Stack";
-    cin>>n;
-    cout<<"\nEnter Your Data";
-    while(n--)
-    {
-       cin>>x;
-       st.Push(x);
-      
-    }
-    st.Display();
-    cout<<"\nPoped UP Data : "<<st.Pop();
-    cout<<"\nPoped UP Data : "<<st.Pop();
-    st.Display();/
-    char str1[]="((a+b)(*(c-)d))";
-    char str2[]="{([a+b]*[c-d)])/e}";
-    if(st.isMatch(str1))
-    cout<<"\nYes Expression Mathches";
-    else
-    {cout<<"\nexpression not Match";}
-    if(st.isBalenced(str2))
-    cout<<"\nYes Expression Mathches";
-    else
-    cout<<"\nexpression not Match";*/
-    // st.Push('#');
-    char *infix="6+5+3*4";
+    char *infix= "((a+b)*c)-d^e^f";
     char*post = st.infixtopostfix(infix);
     cout<<"\n Postfix Form : "<<post;
-    cout<<"\n Value : "<<st.Evalution(post);
+   // cout<<"\n Value : "<<st.Evalution(post);
 }
