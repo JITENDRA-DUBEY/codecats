@@ -232,7 +232,7 @@ void Tree::itrpostorder(Node*p)
              p=p->lchild;
         }
         else{
-            x=(int)st.pop();
+            x=(long int)st.pop();
             if(x>0)
             {   
                 st.push((Node*)(-x));
@@ -241,7 +241,7 @@ void Tree::itrpostorder(Node*p)
             else{
                   p=(Node*)(-x);
               cout<<p->data <<" ";
-              p=NULL;
+                p=NULL;
         }
     }
 }
